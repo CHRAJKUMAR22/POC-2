@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'https://github.com/CHRAJKUMAR22/POC-2.git'
+                git branch: 'main', url: 'https://github.com/CHRAJKUMAR22/POC-2.git'
             }
         }
 
