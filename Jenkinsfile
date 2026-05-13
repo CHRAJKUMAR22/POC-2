@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                git 'https://github.com/YOUR_USERNAME/YOUR_REPO.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t myapp:v1 .'
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                sh 'docker rm -f myapp || true'
+                sh 'docker run -d -p 80:80 --name myapp myapp:v1'
+            }
+        }
+    }
+}
